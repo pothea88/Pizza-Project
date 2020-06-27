@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/',function(){
+    return view('auths.login');
 });
+Route::get('pizza','PizzaController@index');
+Route::get('user-registration', 'UserController@index');
+Route::post('user-store', 'UserController@userPostRegistration');
+Route::get('user-login', 'UserController@userLoginIndex');
+Route::get('login', 'UserController@userPostLogin');
+Route::get('logout', 'UserController@logout');
+Route::post('addPizza','PizzaController@addPizza');
+
+
