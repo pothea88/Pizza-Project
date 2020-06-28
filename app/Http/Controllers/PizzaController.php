@@ -11,10 +11,12 @@ class PizzaController extends Controller
 {
     public function index(){
         $pizzas = Pizza::all();
-        if(!session()->has('data')){
-            return redirect('/');
-        }
-        return view('index',compact('pizzas'));
+        // dd($name);
+        // if(Auth::check()){
+            return view('index',compact('pizzas'));
+        // }
+        // return redirect('/');
+         
     }
     public function addPizza(Request $request){
         $pizza = new Pizza();
@@ -23,5 +25,10 @@ class PizzaController extends Controller
         $pizza->ingredients = $request->ingredients;
         $pizza->save();
         return redirect('pizza');
+    }
+    public function dataEdit($id){
+        $pizzaData = Pizza::find($id);
+        dd($pizzaData);
+        return view('index',compact('pizzaData'));
     }
 }

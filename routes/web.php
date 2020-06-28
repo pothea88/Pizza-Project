@@ -24,5 +24,6 @@ Route::get('user-login', 'UserController@userLoginIndex');
 Route::get('login', 'UserController@userPostLogin');
 Route::get('logout', 'UserController@logout');
 Route::post('addPizza','PizzaController@addPizza');
+Route::get('dataEdit/{id}','PizzaController@dataEdit');
 
 
