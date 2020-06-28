@@ -33,40 +33,13 @@
 							<td class="text-success font-weight-bolder">{{$pizza->price}}$</td>
 							<td>
 								@if(Auth::user()->id == 1)
-								<a href="" data-toggle="modal" data-target="#updatePizza"><i class="material-icons text-info" data-toggle="tooltip" title="Edit Pizza!" data-placement="left">edit</i></a>
+								<a href="" data-toggle="modal" data-target="#updatePizza{{$pizza->id}}"><i class="material-icons text-info" data-toggle="tooltip" title="Edit Pizza!" data-placement="left">edit</i></a>
 								<a href="" data-toggle="tooltip" title="Delete Pizza!" data-placement="right"><i class="material-icons text-danger">delete</i></a>
 								@endif
 							</td>
 						</tr>
 					</tbody>
 					@endforeach
-					<!-- <tr>
-						<td class="pizzaName">Seiha Pizza</td>
-						<td>Tomatoes, ham, cheese, peperoni</td>
-						<td  class="text-success font-weight-bolder">1.5$</td>
-						<td>
-							<a href="" data-toggle="modal" data-target="#updatePizza"><i class="material-icons text-info" data-toggle="tooltip" title="Edit Pizza!" data-placement="left">edit</i></a>
-							<a href="" data-toggle="tooltip" title="Delete Pizza!" data-placement="right"><i class="material-icons text-danger">delete</i></a>
-						</td>
-					</tr>
-					<tr>
-						<td class="pizzaName">Rady Pizza</td>
-						<td>Tomatoes, ham, cheese, peperoni</td>
-						<td  class="text-success font-weight-bolder">1500$</td>
-						<td>
-							<a href="" data-toggle="modal" data-target="#updatePizza"><i class="material-icons text-info" data-toggle="tooltip" title="Edit Pizza!" data-placement="left">edit</i></a>
-							<a href="" data-toggle="tooltip" title="Delete Pizza!" data-placement="right"><i class="material-icons text-danger">delete</i></a>
-						</td>
-					</tr>
-					<tr>
-						<td class="pizzaName">Ronan Pizza</td>
-						<td>Tomatoes, ham, cheese, peperoni</td>
-						<td  class="text-success font-weight-bolder">1$</td>
-						<td>
-							<a href="" data-toggle="modal" data-target="#updatePizza"><i class="material-icons text-info" data-toggle="tooltip" title="Edit Pizza!" data-placement="left">edit</i></a>
-							<a href="" data-toggle="tooltip" title="Delete Pizza!" data-placement="right"><i class="material-icons text-danger">delete</i></a>
-						</td>
-					</tr> -->
 				</table>
 			</div>
 			<div class="col-2"></div>
@@ -111,7 +84,9 @@
 
   <!-- ========================================START Model UPDATE================================================ -->
 	<!-- The Modal -->
-	<div class="modal fade" id="updatePizza">
+	@foreach($pizzas as $pizza)
+	<div class="modal fade" id="updatePizza{{$pizza->id}}">
+	
     <div class="modal-dialog">
       <div class="modal-content">
       
@@ -125,13 +100,13 @@
         <div class="modal-body text-right">
 			<form  action="/" method="post">
 				<div class="form-group">
-					<input type="text" class="form-control" value="Rady Pizza">
+					<input type="text" name="name" class="form-control" value="{{$pizza->name}}">
 				</div>
 				<div class="form-group">
-					<input type="number" class="form-control" value="100">
+					<input type="number" name="price" class="form-control" value="{{$pizza->price}}">
 				</div>
 				<div class="form-group">
-					<textarea name=""  class="form-control">Cheese, Tomatoes, Chicken, Salad</textarea>
+					<textarea name="ingredients"  class="form-control">{{$pizza->ingredients}}</textarea>
 				</div>
 			<a data-dismiss="modal" class="closeModal">DISCARD</a>
 		 	 &nbsp;
@@ -141,5 +116,6 @@
       </div>
     </div>
   </div>
+  @endforeach
   <!-- =================================END MODEL UPDATE==================================================== -->
 

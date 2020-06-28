@@ -39,7 +39,7 @@ class UserController extends Controller
         }
         $user->save();
         if(!is_null($user)){
-            return redirect('/');
+            return redirect('pizza');
         }else{
             echo "don't have user";
         }
@@ -48,7 +48,6 @@ class UserController extends Controller
     // --------------------- [ User login ] ---------------------
     public function userPostLogin(Request $request)
     {
-        // dd($request->password);
         $request->validate([
             "email"           =>    "required",
             "password"        =>    "required"
