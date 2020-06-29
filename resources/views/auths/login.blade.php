@@ -12,14 +12,6 @@
       <div class="auth__form_body">
         <h3 class="auth__form_title">Peperoni App</h3>
         <div>
-        @if(Session::has('success'))
-          <div class="alert alert-success">
-              {{ Session::get('success') }}
-              @php
-                  Session::forget('success');
-              @endphp
-          </div>
-        @endif
           <div class="form-group">
             <label class="text-uppercase small">Email</label>
             <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Enter email" name="email" >

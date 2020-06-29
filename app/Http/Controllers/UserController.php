@@ -38,11 +38,13 @@ class UserController extends Controller
             $user->role = 0;
         }
         $user->save();
-        if(!is_null($user)){
-            return redirect('pizza');
-        }else{
-            echo "don't have user";
-        }
+        $request->session()->put('data',$request->input());
+        return redirect('pizza');
+        // if(!is_null($user)){
+        //     return redirect('pizza');
+        // }else{
+        //     echo "don't have user";
+        // }
     }
 
     // --------------------- [ User login ] ---------------------
