@@ -11,14 +11,17 @@ class PizzaController extends Controller
 {
     public function index(){
         $pizzas = Pizza::all();
-        // dd($name);
-        // if(Auth::check()){
-            return view('index',compact('pizzas'));
-        // }
-        // return redirect('/');
+        if(!session()->has('data')){
+            return redirect('/');
+        }
+        return view('index',compact('pizzas'));
          
     }
     public function addPizza(Request $request){
+        $request->validate([
+            'name' => ['required','string'],
+            'price'=> ['required','min:1','max:50']
+        ]); 
         $pizza = new Pizza();
         $pizza->name = $request->name;
         $pizza->price = $request->price;
@@ -26,9 +29,21 @@ class PizzaController extends Controller
         $pizza->save();
         return redirect('pizza');
     }
-    public function dataEdit($id){
+    public function update(Request $request,$id){
+        $request->validate([
+            'name' => 'required|string',
+            'price'=> 'required|min:1|max:50'
+        ]); 
         $pizzaData = Pizza::find($id);
-        dd($pizzaData);
-        return view('index',compact('pizzaData'));
+        $pizzaData->name = $request->name;
+        $pizzaData->price = $request->price;
+        $pizzaData->ingredients = $request->ingredients;
+        $pizzaData->save();
+        return redirect('pizza');
+    }
+    public function delete($id){
+        $pizzaData = Pizza::find($id);
+        $pizzaData->delete();
+        return redirect('pizza');
     }
 }

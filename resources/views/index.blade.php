@@ -34,7 +34,7 @@
 							<td>
 								@if(Auth::user()->id == 1)
 								<a href="" data-toggle="modal" data-target="#updatePizza{{$pizza->id}}"><i class="material-icons text-info" data-toggle="tooltip" title="Edit Pizza!" data-placement="left">edit</i></a>
-								<a href="" data-toggle="tooltip" title="Delete Pizza!" data-placement="right"><i class="material-icons text-danger">delete</i></a>
+								<a href="{{url('delete',$pizza->id)}}" data-toggle="tooltip" title="Delete Pizza!" data-placement="right"><i class="material-icons text-danger">delete</i></a>
 								@endif
 							</td>
 						</tr>
@@ -64,13 +64,28 @@
 			<form  action="{{url('addPizza')}}" method="post">
 				@csrf
 				<div class="form-group">
-					<input type="text" name="name" class="form-control" placeholder="Pizza name">
+					<input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Pizza name">
+					@error('name')
+						<span class="invalid-feedback" role="alert">
+							<strong>{{ $message }}</strong>
+						</span>
+					@enderror
 				</div>
 				<div class="form-group">
-					<input type="number" name="price" class="form-control" placeholder="Prize in dollars">
+					<input type="number" name="price" class="form-control @error('price') is-invalid @enderror" placeholder="Prize in dollars">
+					@error('price')
+						<span class="invalid-feedback" role="alert">
+							<strong>{{ $message }}</strong>
+						</span>
+					@enderror
 				</div>
 				<div class="form-group">
-					<textarea name="ingredients" placeholder="Ingredients" class="form-control"></textarea>
+					<textarea name="ingredients" placeholder="Ingredients" class="form-control @error('ingredients') is-invalid @enderror"></textarea>
+					@error('ingredients')
+						<span class="invalid-feedback" role="alert">
+							<strong>{{ $message }}</strong>
+						</span>
+					@enderror
 				</div>
 			<a data-dismiss="modal" class="closeModal">DISCARD</a>
 		 	 &nbsp;
@@ -98,7 +113,9 @@
         
         <!-- Modal body -->
         <div class="modal-body text-right">
-			<form  action="/" method="post">
+			<form  action="{{url('update',$pizza->id)}}" method="post">
+				@csrf
+				@method('PUT')
 				<div class="form-group">
 					<input type="text" name="name" class="form-control" value="{{$pizza->name}}">
 				</div>
