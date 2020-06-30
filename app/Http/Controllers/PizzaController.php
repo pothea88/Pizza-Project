@@ -18,10 +18,6 @@ class PizzaController extends Controller
          
     }
     public function addPizza(Request $request){
-        $request->validate([
-            'name' => ['required','string'],
-            'price'=> ['required','min:1','max:50']
-        ]); 
         $pizza = new Pizza();
         $pizza->name = $request->name;
         $pizza->price = $request->price;
@@ -29,11 +25,7 @@ class PizzaController extends Controller
         $pizza->save();
         return redirect('pizza');
     }
-    public function update(Request $request,$id){
-        $request->validate([
-            'name' => 'required|string',
-            'price'=> 'required|min:1|max:50'
-        ]); 
+    public function update(Request $request,$id){ 
         $pizzaData = Pizza::find($id);
         $pizzaData->name = $request->name;
         $pizzaData->price = $request->price;
@@ -47,3 +39,4 @@ class PizzaController extends Controller
         return redirect('pizza');
     }
 }
+
