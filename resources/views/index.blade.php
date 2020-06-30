@@ -64,32 +64,19 @@
 			<form  action="{{url('addPizza')}}" method="post">
 				@csrf
 				<div class="form-group">
-					<input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Pizza name">
-					@error('name')
-						<span class="invalid-feedback" role="alert">
-							<strong>{{ $message }}</strong>
-						</span>
-					@enderror
+					<input type="text" id="name" name="name" class="form-control name" placeholder="Pizza name" required>
+					<span class="errorMessage" style="display:none; color:red;">shall start with letter only !</span>
 				</div>
 				<div class="form-group">
-					<input type="number" name="price" class="form-control @error('price') is-invalid @enderror" placeholder="Prize in dollars">
-					@error('price')
-						<span class="invalid-feedback" role="alert">
-							<strong>{{ $message }}</strong>
-						</span>
-					@enderror
+					<input type="number" id="price" name="price" class="form-control price" placeholder="Prize in dollars" required>
+					<span class="errorMsg" style="display:none;color:red;">shall be between 1 to 50 !</span>
 				</div>
 				<div class="form-group">
-					<textarea name="ingredients" placeholder="Ingredients" class="form-control @error('ingredients') is-invalid @enderror"></textarea>
-					@error('ingredients')
-						<span class="invalid-feedback" role="alert">
-							<strong>{{ $message }}</strong>
-						</span>
-					@enderror
+					<textarea name="ingredients" placeholder="Ingredients" class="form-control "></textarea>
 				</div>
 			<a data-dismiss="modal" class="closeModal">DISCARD</a>
 		 	 &nbsp;
-		  <input type="submit" value="CREATE" class="createBtn text-warning">
+		  <input type="submit" value="CREATE" class="submit createBtn text-warning">
         </div>
         </form>
       </div>
@@ -117,17 +104,19 @@
 				@csrf
 				@method('PUT')
 				<div class="form-group">
-					<input type="text" name="name" class="form-control" value="{{$pizza->name}}">
+					<input type="text" name="name" class="form-control name" value="{{$pizza->name}}" required>
+					<span class="errorMessage" style="display:none; color:red;">shall start with letter only !</span>
 				</div>
 				<div class="form-group">
-					<input type="number" name="price" class="form-control" value="{{$pizza->price}}">
+					<input type="number" name="price" class="form-control price" value="{{$pizza->price}}" required>
+					<span class="errorMsg" style="display:none;color:red;">shall be between 1 to 50 !</span>
 				</div>
 				<div class="form-group">
 					<textarea name="ingredients"  class="form-control">{{$pizza->ingredients}}</textarea>
 				</div>
 			<a data-dismiss="modal" class="closeModal">DISCARD</a>
 		 	 &nbsp;
-		  <input type="submit" value="UPDATE" class="createBtn text-warning">
+		  <input type="submit" value="UPDATE" class="submit createBtn text-warning">
         </div>
         </form>
       </div>

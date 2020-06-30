@@ -32,7 +32,7 @@
           </div>
           <div class="form-group">
             <label class="text-uppercase small">Password</label>
-            <input type="text" style="-webkit-text-security: square" class="form-control @error('password') is-invalid @enderror" placeholder="Password" name="password">
+            <input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" name="password">
             @error('password')
               <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
