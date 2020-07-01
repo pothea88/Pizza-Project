@@ -23,7 +23,8 @@
         <div>
           <div class="form-group">
             <label class="text-uppercase small">Email</label>
-            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="email">
+            <input id="email" type="email" class="form-control email @error('email') is-invalid @enderror" name="email" placeholder="email">
+            <span class="errorMessage" style="display:none; color:red;">shall start with letter only !</span>
             @error('email')
               <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
@@ -56,7 +57,7 @@
         </div>
       </div>
       <div class="auth__form_actions">
-        <button class="btn btn-primary btn-lg btn-block">
+        <button class="btn btn-primary btn-lg btn-block submit">
           NEXT
         </button>
         <div class="mt-2">
