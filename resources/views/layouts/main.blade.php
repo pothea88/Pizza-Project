@@ -19,7 +19,7 @@
         $(document).ready(function(){
             $('[data-toggle="tooltip"]').tooltip();
 
-            $( ".name" ).keyup(function(element) {
+            $( ".name").keyup(function(element) {
 			var regex = new RegExp("^[a-zA-Z]+$");
 			var str = String.fromCharCode(!element.charCode ? element.which : element.charCode);
 			if (regex.test(str)) {
@@ -45,6 +45,22 @@
                     $('.submit').prop('disabled', false);
                 }
             });
+            $( ".email").keyup(function(element) {
+			var regex = new RegExp("^[a-zA-Z]+$");
+			var str = String.fromCharCode(!element.charCode ? element.which : element.charCode);
+			if (regex.test(str)) {
+				$('.errorMessage').hide();
+				$('.submit').prop('disabled', false);
+				return true;
+			}
+			else
+			{
+                element.preventDefault();
+                $('.errorMessage').show();
+                $('.submit').prop('disabled', true);
+                return false;
+			}
+		    });
         });
     </script>
 </body>
