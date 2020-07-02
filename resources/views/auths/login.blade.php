@@ -12,24 +12,23 @@
       <div class="auth__form_body">
         <h3 class="auth__form_title">Peperoni App</h3>
         <div>
+            @if(Session::has('error'))
+                <div class="alert alert-danger">
+                    {{ Session::get('error') }}
+                    @php
+                        Session::forget('error');
+                    @endphp
+                </div>
+            @endif
           <div class="form-group">
             <label class="text-uppercase small">Email</label>
-            <input type="email" class="form-control email @error('email') is-invalid @enderror" placeholder="Enter email" name="email" >
-            <span class="errorMessage" style="display:none; color:red;">shall start with letter only !</span>
-            @error('email')
-              <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-              </span>
-            @enderror
+            <input type="email" class="form-control" placeholder="Enter email" name="email" >
+            {!! $errors->first('email', '<small class="text-danger">:message</small>') !!}
           </div>
           <div class="form-group">
             <label class="text-uppercase small">Password</label>
-            <input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" name="password">
-            @error('password')
-              <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-              </span>
-            @enderror
+            <input type="password" class="form-control" placeholder="Password" name="password">
+            {!! $errors->first('password', '<small class="text-danger">:message</small>') !!}
           </div>
         </div>
       </div>

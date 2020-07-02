@@ -40,11 +40,6 @@ class UserController extends Controller
         $user->save();
         $request->session()->put('data',$request->input());
         return redirect('pizza');
-        // if(!is_null($user)){
-        //     return redirect('pizza');
-        // }else{
-        //     echo "don't have user";
-        // }
     }
 
     // --------------------- [ User login ] ---------------------
@@ -58,7 +53,7 @@ class UserController extends Controller
         if(Auth::attempt($request->session()->get('data'))) {
             return redirect('pizza');    
         }
-        return "Failure";
+        return back()->with('error', 'Whoops! invalid username or password.');
     }
     // ------------------- [ User logout function ] ----------------------
     public function logout(Request $request)

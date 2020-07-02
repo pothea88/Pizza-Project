@@ -7,14 +7,6 @@
   <div class="auth__body">
     <form class="auth__form" autocomplete="off" action="{{url('user-store')}}" method="post">
       @csrf
-      @if(Session::has('success'))
-          <div class="alert alert-success">
-              {{ Session::get('success') }}
-              @php
-                  Session::forget('success');
-              @endphp
-          </div>
-      @endif
       <div class="auth__form_body">
         <h3 class="auth__form_title">
         <img src="images/logo.svg" alt="" width="50">
@@ -23,31 +15,18 @@
         <div>
           <div class="form-group">
             <label class="text-uppercase small">Email</label>
-            <input id="email" type="email" class="form-control email @error('email') is-invalid @enderror" name="email" placeholder="email">
-            <span class="errorMessage" style="display:none; color:red;">shall start with letter only !</span>
-            @error('email')
-              <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-              </span>
-            @enderror
+            <input id="email" type="email" class="form-control" name="email" placeholder="email">
+            {!! $errors->first('email', '<small class="text-danger">:message</small>') !!}
           </div>
           <div class="form-group">
             <label class="text-uppercase small">Password</label>
-            <input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" name="password">
-            @error('password')
-              <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-              </span>
-            @enderror
+            <input type="password" class="form-control" placeholder="Password" name="password">
+            {!! $errors->first('password', '<small class="text-danger">:message</small>') !!}
           </div>
           <div class="form-group">
             <label class="text-uppercase small">Address</label>
-            <textarea name="address"  class="form-control @error('password') is-invalid @enderror" placeholder="Address"></textarea>
-            @error('address')
-              <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-              </span>
-            @enderror
+            <textarea name="address"  class="form-control" placeholder="Address"></textarea>
+            {!! $errors->first('address', '<small class="text-danger">:message</small>') !!}
           </div>
           <div class="form-check">
             <label class="form-check-label">

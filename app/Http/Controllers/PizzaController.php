@@ -9,14 +9,24 @@ use App\User;
 
 class PizzaController extends Controller
 {
+    /**
+     * Display a listing of the pizza.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index(){
         $pizzas = Pizza::all();
         if(!session()->has('data')){
             return redirect('/');
         }
         return view('index',compact('pizzas'));
-         
     }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function addPizza(Request $request){
         $pizza = new Pizza();
         $pizza->name = $request->name;
@@ -25,6 +35,13 @@ class PizzaController extends Controller
         $pizza->save();
         return redirect('pizza');
     }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int $id 
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request,$id){ 
         $pizzaData = Pizza::find($id);
         $pizzaData->name = $request->name;
@@ -33,6 +50,12 @@ class PizzaController extends Controller
         $pizzaData->save();
         return redirect('pizza');
     }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int id
+     * @return \Illuminate\Http\Response
+     */
     public function delete($id){
         $pizzaData = Pizza::find($id);
         $pizzaData->delete();
