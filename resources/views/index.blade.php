@@ -7,7 +7,7 @@
 			<div class="col-2"></div>
 			<div class="col-8">
 				<div class="text-right">
-					@if(Auth::user()->id == 1)
+					@if(Auth::user()->role == 1)
 					<a href="" class="btn btn-warning btn-sm text-white font-weight-bolder" data-toggle="modal" data-target="#createPizza">
 						<i class="material-icons float-left" data-toggle="tooltip" title="Add Pizza!" data-placement="left">add</i>&nbsp;Add
 					</a>
@@ -32,7 +32,7 @@
 							</td>
 							<td class="text-success font-weight-bolder">{{$pizza->price}}$</td>
 							<td>
-								@if(Auth::user()->id == 1)
+								@if(Auth::user()->role == 1)
 								<a href="" data-toggle="modal" data-target="#updatePizza{{$pizza->id}}"><i class="material-icons text-info" data-toggle="tooltip" title="Edit Pizza!" data-placement="left">edit</i></a>
 								<a href="{{url('delete',$pizza->id)}}" data-toggle="tooltip" title="Delete Pizza!" data-placement="right"><i class="material-icons text-danger">delete</i></a>
 								@endif
