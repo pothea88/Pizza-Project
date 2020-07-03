@@ -108,7 +108,7 @@
 					<span class="errorMessage" style="display:none; color:red;">shall start with letter only !</span>
 				</div>
 				<div class="form-group">
-					<input type="number" name="price" class="form-control price" value="{{$pizza->price}}" required>
+					<input type="number" name="price" class="form-control" value="{{$pizza->price}}" required>
 					<span class="errorMsg" style="display:none;color:red;">shall be between 1 to 50 !</span>
 				</div>
 				<div class="form-group">
